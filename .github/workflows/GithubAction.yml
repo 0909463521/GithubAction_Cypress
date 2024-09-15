@@ -1,48 +1,20 @@
-name: Cypress Tests
+name: Download Data
 
 on:
-  push:
-    branches: [main, master]
-  repository_dispatch:
-    types: [run-cypress-tests]
+  workflow_dispatch:
 
 jobs:
-  test:
+  download:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '14'
-          
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: my-artifact
-          path: ./pages/page.js
-          
-      # - name: Install Cypress and Dependencies
-      #   run: |
-      #     npm ci
-      #     npx cypress install
-          
-      # - name: Run Cypress Tests
-      #   run: npx cypress run
-      
-      # - name: Upload Cypress Report
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: cypress-report
-      #     path: ./cypress/results/
-      #     retention-days: 30
-          
-      # - name: Upload Playwright Report to Cypress Repo
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: playwright-report
-      #     path: ./playwright-report/
-      #     retention-days: 30
+    - name: Download Artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: data
+
+    - name: Read Data
+      run: |
+        cat data/data.txt
