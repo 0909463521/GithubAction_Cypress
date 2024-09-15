@@ -21,7 +21,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: my-artifact
-          path: ./cypress/downloads
+          path: ./pages/page.js
           
       # - name: Install Cypress and Dependencies
       #   run: |
