@@ -1,36 +1,27 @@
-name: hello-world
+name: Cypress Tests
 
 on:
-  # push:
-  #   branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
   repository_dispatch:
     types: [run-cypress-tests]
 
 jobs:
   my-job-test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./
-        
-    strategy:
-      matrix:
-        node-version: [22.3.0]
-    
-    env:
-      MODE: "dev"
     
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Set up Node
+      - name: Download Playwright Report
+        uses: actions/download-artifact@v3
+        with:
+          name: playwright-report
+
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{matrix.node-version}}
-          
+          node-version: '14'
+
       - name: Install Cypress
         run: |
           npm ci
@@ -38,18 +29,6 @@ jobs:
 
       - name: Run Cypress Tests
         run: npx cypress run
-      
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
-        with:
-          name: results
-          path: ./cypress/results/
-          retention-days: 30
-
-      - name: Download Playwright Report
-        uses: actions/download-artifact@v3
-        with:
-          name: playwright-report
 
       - name: Show Playwright Report
         run: |
