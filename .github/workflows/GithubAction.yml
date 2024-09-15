@@ -5,10 +5,7 @@ on:
   #   branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
-  workflow_run:
-    workflows: ["Workflow A"]
-    types:
-      - completed
+  workflow_dispatch:
 
 jobs:
   my-job-test:
