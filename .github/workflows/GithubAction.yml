@@ -5,9 +5,9 @@ on:
     types: [run-cypress-tests]
 
 jobs:
-  my-job-test:
+  test:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -16,6 +16,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: playwright-report
+
+      - name: Show Playwright Report
+        run: |
+          echo "Playwright Report Contents:"
+          ls -R ./playwright-report/
+          # You can also add commands to process the report or display specific contents
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -29,9 +35,3 @@ jobs:
 
       - name: Run Cypress Tests
         run: npx cypress run
-
-      - name: Show Playwright Report
-        run: |
-          echo "Playwright Report Contents:"
-          ls -R ./playwright-report/
-          # You can also add commands to process the report or display specific contents
