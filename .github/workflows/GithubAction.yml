@@ -17,7 +17,8 @@ jobs:
         with:
           node-version: '14'
 
-      
+      - name: Use data from Repo A
+        run: echo "${{ github.event.client_payload.data }}"
           
       # - name: Install Cypress and Dependencies
       #   run: |
