@@ -45,3 +45,14 @@ jobs:
           name: results
           path: ./cypress/results/
           retention-days: 30
+
+      - name: Download Playwright Report
+        uses: actions/download-artifact@v3
+        with:
+          name: playwright-report
+
+      - name: Show Playwright Report
+        run: |
+          echo "Playwright Report Contents:"
+          ls -R ./playwright-report/
+          # You can also add commands to process the report or display specific contents
