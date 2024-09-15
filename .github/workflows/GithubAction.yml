@@ -33,6 +33,4 @@ jobs:
           retention-days: 30
 
       - name: Use data from Repo A
-        run: echo "Received data: ${{github.event.client_payload.data}}"
-          
- 
+        run: echo "Received data: ${{ github.event.client_payload.data }}"
