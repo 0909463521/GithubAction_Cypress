@@ -17,30 +17,30 @@ jobs:
         with:
           node-version: '14'
           
-      - name: Download Playwright Report
+      - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: playwright-report
-          path: ./playwright-report/
+          name: my-artifact
+          path: ./cypress/downloads
           
-      - name: Install Cypress and Dependencies
-        run: |
-          npm ci
-          npx cypress install
+      # - name: Install Cypress and Dependencies
+      #   run: |
+      #     npm ci
+      #     npx cypress install
           
-      - name: Run Cypress Tests
-        run: npx cypress run
+      # - name: Run Cypress Tests
+      #   run: npx cypress run
       
-      - name: Upload Cypress Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: cypress-report
-          path: ./cypress/results/
-          retention-days: 30
+      # - name: Upload Cypress Report
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: cypress-report
+      #     path: ./cypress/results/
+      #     retention-days: 30
           
-      - name: Upload Playwright Report to Cypress Repo
-        uses: actions/upload-artifact@v3
-        with:
-          name: playwright-report
-          path: ./playwright-report/
-          retention-days: 30
+      # - name: Upload Playwright Report to Cypress Repo
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: playwright-report
+      #     path: ./playwright-report/
+      #     retention-days: 30
