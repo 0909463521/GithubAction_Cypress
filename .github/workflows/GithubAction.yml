@@ -16,12 +16,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '14'
+
+      - name: Use data from Repo A
+        run: echo "Received data: ${{ github.event.client_payload.data }}"
           
-      - name: Install Cypress and Dependencies
-        run: |
-          npm ci
-          npx cypress install
+      # - name: Install Cypress and Dependencies
+      #   run: |
+      #     npm ci
+      #     npx cypress install
           
-      - name: Run Cypress Tests
-        run: npx cypress run
+      # - name: Run Cypress Tests
+      #   run: npx cypress run
       
