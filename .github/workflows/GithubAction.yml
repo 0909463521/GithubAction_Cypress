@@ -18,8 +18,8 @@ jobs:
           node-version: '14'
           
       - name: Use data from Repo A
-        run: echo "Received data: ${{ github.event.client_payload.data }}"   
-          
+        run: echo "Received data: ${{ github.event.client_payload.data }}"
+
       # - name: Install Cypress and Dependencies
       #   run: |
       #     npm ci
